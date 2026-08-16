@@ -1,10 +1,11 @@
 require('dotenv').config()
-
 const express = require('express')
 const app = express()
 const cors = require('cors')
-
+const PORT = process.env.PORT || 3000
 const conn = require('./db/conn')
+require('./models/rel')
+
 const produtoController = require('./controller/produto.controller')
 const usuarioController = require('./controller/usuario.controller')
 const compraController = require('./controller/compra.controller')

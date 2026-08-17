@@ -1,14 +1,15 @@
 ### - testes da API - o REST Client
+@URL = https://sistemascomprasbackend-production.up.railway.app
 
 ### - Teste se o servidor está funcionando
-GET http://localhost:3000/
+GET {{URL}}
 Content-Type: application/json
 
 #####################################################################
 ### PASSO 1: CARGA INICIAL DE PRODUTOS POR CATEGORIAS DISTINTAS
 # Criando uma base com 6 categorias diferentes para popular o Top 5
 
-POST http://localhost:3000/produtos/carga-lote
+POST {{URL}}/produto/carga-lote
 Content-Type: application/json
 
 [
@@ -54,7 +55,7 @@ Content-Type: application/json
 ### PASSO 2: MOVIMENTAÇÕES DE ESTOQUE PARA RECHEAR O GRÁFICO (TOP 5)
 
 ### - Movimentação 1: Venda em Eletrônicos (Gera alto volume financeiro)
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -69,7 +70,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 2: Venda em Calçados
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -84,7 +85,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 3: Venda em Escritório
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -99,7 +100,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 4: Venda em Eletrodomésticos
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -114,7 +115,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 5: Venda em Livros
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -129,7 +130,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 6: Venda Crítica em Beleza (Gera alerta no gráfico de estoques críticos)
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -144,7 +145,7 @@ Content-Type: application/json
 }
 
 ### - Movimentação 7: Teste de Erro de Saldo Insuficiente (Deve retornar 400)
-POST http://localhost:3000/compra
+POST {{URL}}/compra
 Content-Type: application/json
 
 {
@@ -162,9 +163,9 @@ Content-Type: application/json
 ### PASSO 3: VERIFICAÇÃO FINAL DOS RELATÓRIOS
 
 ### - Consultar Relatório de Categorias (Deve vir ordenado com as 5 principais movimentadas)
-GET http://localhost:3000/relatorio/volume-compras
+GET {{URL}}/relatorio/volume-compras
 Content-Type: application/json
 
 ### - Consultar Relatório de Críticos (Deve apontar o produto 1 com saldo restante 1)
-GET http://localhost:3000/relatorio/produtos-criticos
+GET {{URL}}/relatorio/produtos-criticos
 Content-Type: application/json

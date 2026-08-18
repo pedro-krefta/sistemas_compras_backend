@@ -12,7 +12,6 @@ const compraController = require('./controller/compra.controller')
 const relatVwController = require('./controller/relatVW.controller')
 
 const hostname = '0.0.0.0'
-const PORT = process.env.PORT || 3000
 
 
 app.use(express.urlencoded({ extended: true }))
